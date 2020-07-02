@@ -9,6 +9,7 @@ import { StarComponent } from './star/star.component';
 import { ReplacePipe } from './pipe/replace.pipe';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { Error404Component } from './error-404/error-404.component';
+import { CourseInfoComponent } from './courses/course-info.component';
 
 @NgModule({
   declarations: [
@@ -17,23 +18,28 @@ import { Error404Component } from './error-404/error-404.component';
     StarComponent,
     ReplacePipe,
     NavBarComponent,
-    Error404Component
+    Error404Component,
+    CourseInfoComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot([
+         //rota nomeada
+      {
+        path: 'courses', component: CourseListComponent
+      },
+      {
+        path: 'courses/info/:id',component: CourseInfoComponent
+      },
       {
         //rota root 
-        path: '',redirectTo: 'courses',pathMatch: 'full'
+        path: '', redirectTo: 'courses', pathMatch: 'full'
       },
-      //rota nomeada
-      {
-        path: 'courses',component:CourseListComponent
-      },
+
       //rota de erro
       {
-        path: '**',component:Error404Component  
+        path: '**', component: Error404Component
       }
     ])
   ],
